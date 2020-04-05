@@ -4,6 +4,7 @@
 # Arcade DOM
 
 A DOM tree to create user interfaces in MakeCode Arcade.
+Migrated from https://github.com/riknoll/pxt-arcade-dom
 
 # Contributing
 
