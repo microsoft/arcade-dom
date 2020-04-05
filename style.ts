@@ -3,6 +3,7 @@
  */
 //% weight=80 icon="\uf2d0" color="#4245f5"
 //% blockGap=8
+//% groups='["Elements", "Styles"]'
 namespace dom {
     export const WRAP = -1;
     export const FILL = -2;
