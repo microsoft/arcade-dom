@@ -181,6 +181,12 @@ namespace dom {
             super();
 
             this.src = src;
+            this.updateBounds();
+        }
+
+        protected updateBounds() {
+            this.height = this.src.height;
+            this.width = this.src.width;
         }
 
         protected drawSelf(bounds: BoundingBox) {
