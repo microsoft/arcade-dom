@@ -1,3 +1,9 @@
+---
+---
+
+# Arcade DOM
+
+A DOM tree to create user interfaces in MakeCode Arcade.
 
 # Contributing
 

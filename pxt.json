@@ -1,20 +1,26 @@
 {
     "name": "arcade-dom",
     "dependencies": {
-        "device": "*"
+        "game": "*"
     },
     "files": [
         "CODE_OF_CONDUCT.md",
         "README.md",
         "SECURITY.md",
-        "main.blocks",
-        "main.ts"
+        "styleFunctions.ts",
+        "style.ts",
+        "element.ts",
+        "elementFunctions.ts",
+        "elements.ts"
     ],
     "testFiles": [
         "test.ts"
     ],
+    "testDependencies": {
+        "device": "*"
+    },
     "supportedTargets": [
         "arcade"
     ],
-    "preferredEditor": "blocksprj"
+    "preferredEditor": "tsprj"
 }
