@@ -2,8 +2,9 @@ namespace dom {
     /**
      * Creates a box element
      */
-    //% blockId=uiboxelement block="box||child $child styles $styles"
+    //% blockId=uiboxelement block="box||child $child=variables_get styles $styles"
     //% group="Elements"
+    //% weight=100
     export function box(child?: Element, styles?: Style[]): BoxElement {
         const box = new BoxElement();
         if (child) {
@@ -52,9 +53,10 @@ namespace dom {
             container.applyStyles(styles);
         }
 
-        for (const child of children) {
-            container.appendChild(child)
-        }
+        if (children)
+            for (const child of children) {
+                container.appendChild(child)
+            }
 
         return container;
     }
