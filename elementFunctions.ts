@@ -87,4 +87,18 @@ namespace dom {
         }
         return el;
     }
+
+    /**
+     * Creates an image element
+     */
+    //% blockId=uiboxelement block="image $i=screen_image_picker||styles $styles"
+    //% group="Elements"
+    //% weight=100
+    export function imageElement(i: Image, styles?: Style[]): ImageElement {
+        const box = new ImageElement(i);
+        if (styles) {
+            box.applyStyles(styles);
+        }
+        return box;
+    }    
 }
