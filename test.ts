@@ -34,7 +34,7 @@ function testList() {
 }
 
 function testV() {
-    const el = verticalFlow([
+    const elg = () => verticalFlow([
     box(nameView(), [width(FILL), alignRight(), borderRight(2)]),
         horizontalFlow([
             box(statsView(), [border(2)]),
@@ -43,7 +43,7 @@ function testV() {
     ]);
 
     game.onShade(function () {
-        el.markDirty();
+        const el = elg();
         el.draw();
     });
 }
@@ -54,7 +54,7 @@ function statsView() {
     return box(
         verticalFlow([
             box(text("ATTACK"), nameStyle),
-        box(text("89", [smallFont()]), statStyle),
+        box(text(Math.randomRange(10, 20).toString(), [smallFont()]), statStyle),
             box(text("DEFENSE"), nameStyle),
             box(text("86", [smallFont()]), statStyle),
             box(text("SPEED"), nameStyle),

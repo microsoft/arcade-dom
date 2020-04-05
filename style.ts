@@ -2,6 +2,7 @@
  * A Document Object Model for the screen
  */
 //% weight=80 icon="\uf2d0" color="#4245f5"
+//% blockGap=8
 namespace dom {
     export const WRAP = -1;
     export const FILL = -2;

@@ -1,24 +1,54 @@
 namespace dom {
+    /**
+     * Specifies a width rule
+     */
+    //% blockId=uistylewidth block="width $val"
+    //% group="Styles"
     export function width(val: number): Style {
         return new Style(StyleName.width, val);
     }
 
+    /**
+     * Specifies a height rule
+     */
+    //% blockId=uistyleheight block="height $val"
+    //% group="Styles"
     export function height(val: number): Style {
         return new Style(StyleName.height, val);
     }
 
+    /**
+     * Specifies a padding left rule
+     */
+    //% blockId=uistylepaddingleft block="padding left $val"
+    //% group="Styles"
     export function paddingLeft(val: number): Style {
         return new Style(StyleName.paddingLeft, val);
     }
 
+    /**
+     * Specifies a padding top rule
+     */
+    //% blockId=uistylepaddingtop block="padding top $val"
+    //% group="Styles"
     export function paddingTop(val: number): Style {
         return new Style(StyleName.paddingTop, val);
     }
 
+    /**
+     * Specifies a padding right rule
+     */
+    //% blockId=uistylepaddinright block="padding right $val"
+    //% group="Styles"
     export function paddingRight(val: number): Style {
         return new Style(StyleName.paddingRight, val);
     }
 
+    /**
+     * Specifies a padding bottom rule
+     */
+    //% blockId=uistylepaddingbottom block="padding bottom $val"
+    //% group="Styles"
     export function paddingBottom(val: number): Style {
         return new Style(StyleName.paddingBottom, val);
     }
