@@ -1,4 +1,4 @@
-namespace ui {
+namespace dom {
     export class BoundingBox {
         left: number;
         top: number;
@@ -90,6 +90,10 @@ namespace ui {
         }
     }
 
+    /**
+     * A DOM element
+     */
+    //%
     export class Element {
         parent: Element;
         children: Element[];

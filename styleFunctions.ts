@@ -1,4 +1,4 @@
-namespace ui {
+namespace dom {
     export function width(val: number): Style {
         return new Style(StyleName.width, val);
     }

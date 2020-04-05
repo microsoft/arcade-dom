@@ -1,4 +1,4 @@
-namespace ui {
+namespace dom {
 
 function listComponent(items: string[], selected: number) {
     const el = verticalFlow(
