@@ -96,6 +96,9 @@ namespace dom {
      */
     //%
     export class Element {
+        private static nextId: number = 0;
+        id: string;
+
         parent: Element;
         children: Element[];
         contentBox: ContentBox;
@@ -113,10 +116,15 @@ namespace dom {
         protected classes: string[];
 
         constructor() {
+            this.id = debug ? (Element.nextId++).toString() : undefined;
             this.verticalFlow = true;
             this.width = WRAP;
             this.height = WRAP;
             this.contentBox = new ContentBox();
+        }
+
+        toString() {
+            return this.id;
         }
 
         appendChild(child: Element) {
@@ -349,7 +357,7 @@ namespace dom {
 
     function calculateWidth(element: Element): number {
         if (!element) return screen.width;
-        else if (element._cachedWidth != undefined) return element._cachedWidth;
+        else if (element._cachedWidth !== undefined) return element._cachedWidth;
         else if (element.width === WRAP) return getWRAPWidth(element);
         else if (element.width === FILL) return element._cachedWidth = contentWidth(element.parent);
         else {
@@ -362,7 +370,7 @@ namespace dom {
 
     function calculateHeight(element: Element): number {
         if (!element) return screen.height;
-        else if (element._cachedHeight != undefined) return element._cachedHeight;
+        else if (element._cachedHeight !== undefined) return element._cachedHeight;
         else if (element.height === WRAP) return getWRAPHeight(element);
         else if (element.height === FILL) return element._cachedHeight = contentHeight(element.parent);
         else {
@@ -380,20 +388,23 @@ namespace dom {
         let childWidth = 0;
 
         if (element.width !== WRAP && element.width !== FILL) {
-            return element._cachedWidth = element.width;
+            const pa = element.contentBox.padding;
+            const bo = element.contentBox.border;
+            return element._cachedWidth = element.width
+                + pa.left + pa.right + bo.left + bo.right;
         }
         else if (element.children) {
             if (element.verticalFlow) {
                 let maxWidth = 0;
                 for (const child of element.children) {
-                    maxWidth = Math.max(calculateWidth(child), maxWidth)
+                    maxWidth = Math.max(getWRAPWidth(child), maxWidth)
                 }
                 childWidth = maxWidth;
             }
             else {
                 let totalWidth = 0;
                 for (const child of element.children) {
-                    totalWidth += calculateWidth(child);
+                    totalWidth += getWRAPWidth(child);
                 }
                 childWidth = totalWidth;
             }
@@ -416,20 +427,23 @@ namespace dom {
         let childHeight = 0;
 
         if (element.height !== WRAP && element.height !== FILL) {
-            return element._cachedHeight = element.height;
+            const pa = element.contentBox.padding;
+            const bo = element.contentBox.border;
+            return element._cachedHeight = element.height
+            + pa.top + pa.bottom + bo.top + bo.bottom;
         }
         else if (element.children) {
             if (element.verticalFlow) {
                 let totalHeight = 0;
                 for (const child of element.children) {
-                    totalHeight += calculateHeight(child);
+                    totalHeight += getWRAPHeight(child);
                 }
                 childHeight = totalHeight;
             }
             else {
                 let maxHeight = 0;
                 for (const child of element.children) {
-                    maxHeight = Math.max(calculateHeight(child), maxHeight)
+                    maxHeight = Math.max(getWRAPHeight(child), maxHeight)
                 }
                 childHeight = maxHeight;
             }

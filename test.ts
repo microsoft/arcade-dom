@@ -222,7 +222,6 @@ function testBoxModel() {
                 imageElement(im, [color(3), border(1), paddingTop(8)]),
                 imageElement(im, [color(3), border(1), paddingBottom(8)])
             ], color(1))
-
         ], alignLeft());
         return el; 
     }
@@ -232,6 +231,7 @@ function testBoxModel() {
     });
 }
 
+dom.debug = true;
 //testList();
 testV();
 //testBoxModel();

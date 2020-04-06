@@ -9,6 +9,7 @@ Migrated from https://github.com/riknoll/pxt-arcade-dom
 ## TODO
 
 - [ ] cascading class names
+- [ ] skinning of elements
 
 # Contributing
 

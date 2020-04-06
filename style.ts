@@ -5,6 +5,12 @@
 //% blockGap=8
 //% groups='["Elements", "Styles"]'
 namespace dom {
+    export let debug: boolean = false;
+    export function log(msg: string): void {
+        if (debug)
+            console.log(msg);
+    }
+
     export const WRAP = -1;
     export const FILL = -2;
 
