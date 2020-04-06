@@ -6,6 +6,10 @@
 A DOM tree to create user interfaces in MakeCode Arcade.
 Migrated from https://github.com/riknoll/pxt-arcade-dom
 
+## TODO
+
+- [ ] cascading class names
+
 # Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
