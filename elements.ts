@@ -1,34 +1,22 @@
 namespace dom {
     export class ShapeElement extends Element {
-        color: number;
 
         constructor() {
             super();
-
-            this.color = 0;
         }
 
         protected drawSelf(bounds: BoundingBox) {
-            if (this.color) this.drawShape(bounds);
+            if (this.contentBox.color) this.drawShape(bounds);
         }
 
-        protected drawShape(bounds: BoundingBox) {
-            screen.drawRect(bounds.left, bounds.top, bounds.width, bounds.height, this.color);
-        }
-
-        applyStyle(style: Style) {
-            if (style.name === StyleName.Color) {
-                this.color = style.value
-            }
-            else {
-                super.applyStyle(style);
-            }
+        protected drawShape(bounds: BoundingBox) {   
+            screen.drawRect(bounds.left, bounds.top, bounds.width, bounds.height, this.contentBox.color);
         }
     }
 
     export class BoxElement extends ShapeElement {
         protected drawShape(bounds: BoundingBox) {
-            screen.fillRect(bounds.left, bounds.top, bounds.width, bounds.height, this.color);
+            screen.fillRect(bounds.left, bounds.top, bounds.width, bounds.height, this.contentBox.color);
         }
     }
 
@@ -39,7 +27,7 @@ namespace dom {
         constructor(text?: string) {
             super();
             this.setText(text);
-            this.color = 15;
+            this.contentBox.color = 1;
             this.font = Font.Normal;
         }
 
@@ -70,7 +58,7 @@ namespace dom {
         }
 
         protected drawShape(bounds: BoundingBox) {
-            screen.print(this.text, bounds.left, bounds.top, this.color, this.renderFont());
+            screen.print(this.text, bounds.left, bounds.top, this.contentBox.color, this.renderFont());
         }
 
         protected renderFont() {
@@ -155,11 +143,11 @@ namespace dom {
 
             if (letterOffset) {
                 this.partialCanvas.fill(0);
-                this.partialCanvas.print(this.text.charAt(startIndex), letterOffset, 0, this.color, font)
+                this.partialCanvas.print(this.text.charAt(startIndex), letterOffset, 0, this.contentBox.color, font)
                 screen.drawTransparentImage(this.partialCanvas, bounds.left, bounds.top);
             }
             else {
-                screen.print(this.text.charAt(startIndex), bounds.left, bounds.top, this.color, font);
+                screen.print(this.text.charAt(startIndex), bounds.left, bounds.top, this.contentBox.color, font);
             }
 
             for (let i = 1; i < this.maxCharacters; i++) {
@@ -167,7 +155,7 @@ namespace dom {
                     this.text.charAt(startIndex + i),
                     bounds.left + i * font.charWidth + letterOffset,
                     bounds.top,
-                    this.color,
+                    this.contentBox.color,
                     font
                 );
             }

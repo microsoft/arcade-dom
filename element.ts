@@ -50,6 +50,7 @@ namespace dom {
         padding: BoxValues;
         border: BoxValues;
         align: ContentAlign;
+        color: number;
         borderColor: number;
 
         constructor() {
@@ -271,6 +272,7 @@ namespace dom {
                 case StyleName.Width: this.width = style.value; break;
                 case StyleName.Height: this.height = style.value; break;
                 case StyleName.BorderColor: this.contentBox.borderColor = style.value; break;
+                case StyleName.Color: this.contentBox.color = style.value; break;
                 case StyleName.BorderLeft: this.contentBox.border.left = style.value; break;
                 case StyleName.BorderRight: this.contentBox.border.right = style.value; break;
                 case StyleName.BorderTop: this.contentBox.border.top = style.value; break;

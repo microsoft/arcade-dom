@@ -185,7 +185,7 @@ function hpView() {
 function testBoxModel() {
     const elg = () => {
         const el = verticalFlow([
-            text("text", color(1)),
+            text("text"),
             text("text", [color(1), border(2), padding(3)]),
             text("text", [color(2), borderLeft(2), borderTop(3), borderRight(4), borderBottom(5)]),
             text("text - padding 60", [color(1), paddingLeft(60)]),
