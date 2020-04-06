@@ -51,6 +51,9 @@ namespace dom {
         }
     }
 
+    export type StyleOrClassName = Style | string;
+    export type StylesOrClassName = StyleOrClassName[] | StyleOrClassName | string;
+
     export class StyleRule {
         readonly className: string;
         protected styles: Style[];

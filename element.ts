@@ -133,9 +133,11 @@ namespace dom {
             if (this.children) this.children.removeElement(child);
         }
 
-        defineStyleClass(className: string, styles?: Style[]) {
+        defineStyleClass(className: string, styles?: Style | Style[]) {
             if (!this.sheet) this.sheet = new StyleSheet();
-            const rule = new StyleRule(className, styles);
+            if (styles instanceof Style)
+                styles = [styles as Style];
+            const rule = new StyleRule(className, styles as Style[]);
             this.sheet.addRule(rule);
             return rule;
         }
@@ -182,7 +184,13 @@ namespace dom {
             if (this.children) this.children.forEach(c => c.markDirty());
         }
 
-        applyStyles(styles: Style[]) {
+        applyStyles(stylesOrClassName: StylesOrClassName) {
+            if (typeof stylesOrClassName === "string") {
+                stylesOrClassName = [dom.className(stylesOrClassName as string)];
+            } else if (stylesOrClassName instanceof Style) {
+                stylesOrClassName = [stylesOrClassName as Style];
+            }
+            const styles = stylesOrClassName as StyleOrClassName[];
             for (const style of styles) {
                 if (style) this.applyStyle(style);
             }
@@ -250,7 +258,11 @@ namespace dom {
             // subclass
         }
 
-        protected applyStyle(style: Style) {
+        protected applyStyle(styleOrClassName: StyleOrClassName) {
+            if (typeof styleOrClassName === "string") {
+                styleOrClassName = dom.className(styleOrClassName as string);
+            }
+            const style = styleOrClassName as Style;
             switch (style.name) {
                 case StyleName.width: this.width = style.value; return;
                 case StyleName.height: this.height = style.value; return;

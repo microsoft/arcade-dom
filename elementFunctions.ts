@@ -5,7 +5,7 @@ namespace dom {
     //% blockId=uiboxelement block="box||child $child=variables_get styles $styles"
     //% group="Elements"
     //% weight=100
-    export function box(child?: Element, styles?: Style[]): BoxElement {
+    export function box(child?: Element, styles?: StylesOrClassName): BoxElement {
         const box = new BoxElement();
         if (child) {
             box.appendChild(child);
@@ -21,7 +21,7 @@ namespace dom {
      */
     //% blockId=uitextelement block="text $content||styles $styles"
     //% group="Elements"
-    export function text(content: string, styles?: Style[]) {
+    export function text(content: string, styles?: StylesOrClassName) {
         const text = new TextElement(content);
         if (styles) {
             text.applyStyles(styles);
@@ -34,7 +34,7 @@ namespace dom {
      */
     //% blockId=uilongtextelement block="long text $content||styles $styles"
     //% group="Elements"
-    export function longText(content: string, styles?: Style[]) {
+    export function longText(content: string, styles?: StylesOrClassName) {
         const text = new LongTextElement(content);
         if (styles) {
             text.applyStyles(styles);
@@ -47,7 +47,7 @@ namespace dom {
      */
     //% blockId=uiverticalflow block="vertical flow $children||styles $styles"
     //% group="Elements"
-    export function verticalFlow(children: Element[], styles?: Style[]) {
+    export function verticalFlow(children: Element[], styles?: StylesOrClassName) {
         const container = new Element();
         if (styles) {
             container.applyStyles(styles);
@@ -66,7 +66,7 @@ namespace dom {
      */
     //% blockId=uihorizontalflow block="horizontal flow $children||styles $styles"
     //% group="Elements"
-    export function horizontalFlow(children: Element[], styles?: Style[]) {
+    export function horizontalFlow(children: Element[], styles?: StylesOrClassName) {
         const res = verticalFlow(children, styles);
         res.verticalFlow = false;
         return res;
@@ -80,7 +80,7 @@ namespace dom {
      */
     //% blockId=uiscrollinglabel block="scrolling label $label max width $maxWidth||styles $styles"
     //% group="Elements"
-    export function scrollingLabel(label: string, maxWidth: number, styles?: Style[]) {
+    export function scrollingLabel(label: string, maxWidth: number, styles?: StylesOrClassName) {
         const el = new ScrollingTextElement(label, maxWidth);
         if (styles) {
             el.applyStyles(styles);
@@ -94,7 +94,7 @@ namespace dom {
     //% blockId=uiboxelement block="image $i=screen_image_picker||styles $styles"
     //% group="Elements"
     //% weight=100
-    export function imageElement(i: Image, styles?: Style[]): ImageElement {
+    export function imageElement(i: Image, styles?: StylesOrClassName): ImageElement {
         const box = new ImageElement(i);
         if (styles) {
             box.applyStyles(styles);
