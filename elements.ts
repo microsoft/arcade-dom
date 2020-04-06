@@ -180,7 +180,7 @@ namespace dom {
             this.width = this.src.width;
         }
 
-        protected drawShape(bounds: BoundingBox) {
+        protected drawSelf(bounds: BoundingBox) {
             const pa = this.contentBox.padding;
             screen.drawTransparentImage(this.src, pa.left + bounds.left, pa.top + bounds.top);
         }

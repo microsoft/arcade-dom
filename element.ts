@@ -302,7 +302,8 @@ namespace dom {
         }
 
         protected drawBorder() {
-            if (this.contentBox.borderColor === 0) return;
+            const bc = this.contentBox.borderColor;
+            if (bc === 0) return;
 
             if (this.contentBox.border.left) {
                 screen.fillRect(
@@ -310,7 +311,7 @@ namespace dom {
                     this._renderedBounds.top - this.contentBox.border.top,
                     this.contentBox.border.left,
                     this._renderedBounds.height + this.contentBox.border.top + this.contentBox.border.bottom,
-                    this.contentBox.borderColor
+                    bc
                 );
             }
 
@@ -320,7 +321,7 @@ namespace dom {
                     this._renderedBounds.top - this.contentBox.border.top,
                     this.contentBox.border.right,
                     this._renderedBounds.height + this.contentBox.border.top + this.contentBox.border.bottom,
-                    this.contentBox.borderColor
+                    bc
                 );
             }
 
@@ -330,7 +331,7 @@ namespace dom {
                     this._renderedBounds.top - this.contentBox.border.top,
                     this._renderedBounds.width + this.contentBox.border.left + this.contentBox.border.right,
                     this.contentBox.border.top,
-                    this.contentBox.borderColor
+                    bc
                 );
             }
 
@@ -340,7 +341,7 @@ namespace dom {
                     this._renderedBounds.top + this._renderedBounds.height,
                     this._renderedBounds.width + this.contentBox.border.left + this.contentBox.border.right,
                     this.contentBox.border.bottom,
-                    this.contentBox.borderColor
+                    bc
                 );
             }
         }
@@ -373,7 +374,8 @@ namespace dom {
     }
 
     function getWRAPWidth(element: Element) {
-        if (element._cachedWidth != undefined) return element._cachedWidth;
+        if (element._cachedWidth != undefined) 
+            return element._cachedWidth;
 
         let childWidth = 0;
 
