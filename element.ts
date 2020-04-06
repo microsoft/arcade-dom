@@ -191,11 +191,17 @@ namespace dom {
                 stylesOrClassName = [stylesOrClassName as Style];
             const styles = stylesOrClassName as StyleOrClassName[];
             if (styles) {
-                for (const style of styles) {
-                    if (style) 
-                        this.applyStyle(style);
+                for (const styleOrClassName of styles) {
+                    if (styleOrClassName) this.applyStyleOrClassName(styleOrClassName)
                 }
             }
+        }
+
+        private applyStyleOrClassName(styleOrClassName: StyleOrClassName) {
+            if (typeof styleOrClassName === "string")
+                styleOrClassName = dom.className(styleOrClassName as string);
+            if (styleOrClassName)
+                this.applyStyle(styleOrClassName as Style);
         }
 
         protected applyClassStyles() {
@@ -260,11 +266,7 @@ namespace dom {
             // subclass
         }
 
-        protected applyStyle(styleOrClassName: StyleOrClassName) {
-            if (typeof styleOrClassName === "string") {
-                styleOrClassName = dom.className(styleOrClassName as string);
-            }
-            const style = styleOrClassName as Style;
+        protected applyStyle(style: Style) {
             switch (style.name) {
                 case StyleName.Width: this.width = style.value; return;
                 case StyleName.Height: this.height = style.value; return;

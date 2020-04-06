@@ -48,7 +48,7 @@ function testList() {
         el = listComponent(data, selected);
     });
 
-    game.onShade(function () {
+    game.onPaint(function () {
         el.draw();
     });
 }
@@ -184,6 +184,6 @@ function hpView() {
     ]);
 }
 
-testV();
+testList();
 
 }
