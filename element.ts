@@ -264,31 +264,31 @@ namespace dom {
             }
             const style = styleOrClassName as Style;
             switch (style.name) {
-                case StyleName.width: this.width = style.value; return;
-                case StyleName.height: this.height = style.value; return;
-                case StyleName.borderColor: this.contentBox.borderColor = style.value; return;
-                case StyleName.borderLeft: this.contentBox.border.left = style.value; return;
-                case StyleName.borderRight: this.contentBox.border.right = style.value; return;
-                case StyleName.borderTop: this.contentBox.border.top = style.value; return;
-                case StyleName.borderBottom: this.contentBox.border.bottom = style.value; return;
-                case StyleName.contentAlign: this.contentBox.align = style.value; break;
-                case StyleName.paddingLeft: this.contentBox.padding.left = style.value; return;
-                case StyleName.paddingRight: this.contentBox.padding.right = style.value; return;
-                case StyleName.paddingTop: this.contentBox.padding.top = style.value; return;
-                case StyleName.paddingBottom: this.contentBox.padding.bottom = style.value; return;
-                case StyleName.padding:
+                case StyleName.Width: this.width = style.value; return;
+                case StyleName.Height: this.height = style.value; return;
+                case StyleName.BorderColor: this.contentBox.borderColor = style.value; return;
+                case StyleName.BorderLeft: this.contentBox.border.left = style.value; return;
+                case StyleName.BorderRight: this.contentBox.border.right = style.value; return;
+                case StyleName.BorderTop: this.contentBox.border.top = style.value; return;
+                case StyleName.BorderBottom: this.contentBox.border.bottom = style.value; return;
+                case StyleName.ContentAlign: this.contentBox.align = style.value; break;
+                case StyleName.PaddingLeft: this.contentBox.padding.left = style.value; return;
+                case StyleName.PaddingRight: this.contentBox.padding.right = style.value; return;
+                case StyleName.PaddingTop: this.contentBox.padding.top = style.value; return;
+                case StyleName.PaddingBottom: this.contentBox.padding.bottom = style.value; return;
+                case StyleName.Padding:
                     this.contentBox.padding.left = style.value;
                     this.contentBox.padding.right = style.value;
                     this.contentBox.padding.top = style.value;
                     this.contentBox.padding.bottom = style.value;
                     break;
-                case StyleName.border:
+                case StyleName.Border:
                     this.contentBox.border.left = style.value;
                     this.contentBox.border.right = style.value;
                     this.contentBox.border.top = style.value;
                     this.contentBox.border.bottom = style.value;
                     break;
-                case StyleName.className:
+                case StyleName.ClassName:
                     if (!this.classes) this.classes = [];
                     this.classes.push(style.stringValue);
                     break;

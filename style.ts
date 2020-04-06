@@ -9,24 +9,24 @@ namespace dom {
     export const FILL = -2;
 
     export enum StyleName {
-        width,
-        height,
-        paddingLeft,
-        paddingTop,
-        paddingRight,
-        paddingBottom,
-        padding,
-        borderColor,
-        borderLeft,
-        borderTop,
-        borderRight,
-        borderBottom,
-        border,
-        color,
-        contentAlign,
-        font,
-        className,
-        animate
+        Width,
+        Height,
+        PaddingLeft,
+        PaddingTop,
+        PaddingRight,
+        PaddingBottom,
+        Padding,
+        BorderColor,
+        BorderLeft,
+        BorderTop,
+        BorderRight,
+        BorderBottom,
+        Border,
+        Color,
+        ContentAlign,
+        Font,
+        ClassName,
+        Animate
     }
 
     export enum ContentAlign {

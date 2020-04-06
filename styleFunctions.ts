@@ -6,7 +6,7 @@ namespace dom {
     //% group="Styles"
     //% val.defl=64 val.min=0 val.max=160
     export function width(val: number): Style {
-        return new Style(StyleName.width, val);
+        return new Style(StyleName.Width, val);
     }
 
     /**
@@ -16,7 +16,7 @@ namespace dom {
     //% group="Styles"
     //% val.defl=64 val.min=0 val.max=120
     export function height(val: number): Style {
-        return new Style(StyleName.height, val);
+        return new Style(StyleName.Height, val);
     }
 
     /**
@@ -26,7 +26,7 @@ namespace dom {
     //% group="Styles"
     //% val.defl=1 val.min=0 val.max=160
     export function paddingLeft(val: number): Style {
-        return new Style(StyleName.paddingLeft, val);
+        return new Style(StyleName.PaddingLeft, val);
     }
 
     /**
@@ -36,7 +36,7 @@ namespace dom {
     //% group="Styles"
     //% val.defl=1 val.min=0 val.max=120
     export function paddingTop(val: number): Style {
-        return new Style(StyleName.paddingTop, val);
+        return new Style(StyleName.PaddingTop, val);
     }
 
     /**
@@ -46,7 +46,7 @@ namespace dom {
     //% group="Styles"
     //% val.defl=1 val.min=0 val.max=160
     export function paddingRight(val: number): Style {
-        return new Style(StyleName.paddingRight, val);
+        return new Style(StyleName.PaddingRight, val);
     }
 
     /**
@@ -56,7 +56,7 @@ namespace dom {
     //% group="Styles"
     //% val.defl=1 val.min=0 val.max=120
     export function paddingBottom(val: number): Style {
-        return new Style(StyleName.paddingBottom, val);
+        return new Style(StyleName.PaddingBottom, val);
     }
 
     /**
@@ -65,7 +65,7 @@ namespace dom {
     //% blockId=uistylecolor block="border color $val=colorindexpicker"
     //% group="Styles"
     export function borderColor(val: number): Style {
-        return new Style(StyleName.borderColor, val);
+        return new Style(StyleName.BorderColor, val);
     }
 
     /**
@@ -75,7 +75,7 @@ namespace dom {
     //% group="Styles"
     //% val.defl=1 val.min=0 val.max=120
     export function borderLeft(val: number): Style {
-        return new Style(StyleName.borderLeft, val);
+        return new Style(StyleName.BorderLeft, val);
     }
 
     /**
@@ -85,7 +85,7 @@ namespace dom {
     //% group="Styles"
     //% val.defl=1 val.min=0 val.max=160
     export function borderTop(val: number): Style {
-        return new Style(StyleName.borderTop, val);
+        return new Style(StyleName.BorderTop, val);
     }
 
     /**
@@ -95,7 +95,7 @@ namespace dom {
     //% group="Styles"
     //% val.defl=1 val.min=0 val.max=120
     export function borderRight(val: number): Style {
-        return new Style(StyleName.borderRight, val);
+        return new Style(StyleName.BorderRight, val);
     }
 
     /**
@@ -105,7 +105,7 @@ namespace dom {
     //% group="Styles"
     //% val.defl=1 val.min=0 val.max=160
     export function borderBottom(val: number): Style {
-        return new Style(StyleName.borderBottom, val);
+        return new Style(StyleName.BorderBottom, val);
     }
 
     /**
@@ -114,7 +114,7 @@ namespace dom {
     //% blockId=uistylecolor block="color $val=colorindexpicker"
     //% group="Styles"
     export function color(val: number): Style {
-        return new Style(StyleName.color, val);
+        return new Style(StyleName.Color, val);
     }
 
     /**
@@ -124,7 +124,7 @@ namespace dom {
     //% group="Styles"
     //% val.defl=1 val.min=0 val.max=160
     export function padding(val: number): Style {
-        return new Style(StyleName.padding, val);
+        return new Style(StyleName.Padding, val);
     }
 
     /**
@@ -134,7 +134,7 @@ namespace dom {
     //% group="Styles"
     //% val.defl=1 val.min=0 val.max=160
     export function border(val: number): Style {
-        return new Style(StyleName.border, val);
+        return new Style(StyleName.Border, val);
     }
 
     /**
@@ -143,7 +143,7 @@ namespace dom {
     //% blockId=uistylealignleft block="align left"
     //% group="Styles"
     export function alignLeft(): Style {
-        return new Style(StyleName.contentAlign, ContentAlign.Left);
+        return new Style(StyleName.ContentAlign, ContentAlign.Left);
     }
 
     /**
@@ -152,7 +152,7 @@ namespace dom {
     //% blockId=uistylealigncenter block="align center"
     //% group="Styles"
     export function alignCenter(): Style {
-        return new Style(StyleName.contentAlign, ContentAlign.Center);
+        return new Style(StyleName.ContentAlign, ContentAlign.Center);
     }
 
     /**
@@ -161,7 +161,7 @@ namespace dom {
     //% blockId=uistylealignright block="align right"
     //% group="Styles"
     export function alignRight(): Style {
-        return new Style(StyleName.contentAlign, ContentAlign.Right);
+        return new Style(StyleName.ContentAlign, ContentAlign.Right);
     }
 
     /**
@@ -170,7 +170,7 @@ namespace dom {
     //% blockId=uistylealignsmallfont block="small font"
     //% group="Styles"
     export function smallFont(): Style {
-        return new Style(StyleName.font, Font.Small);
+        return new Style(StyleName.Font, Font.Small);
     }
 
     /**
@@ -179,7 +179,7 @@ namespace dom {
     //% blockId=uistylealignanimate block="animate $doAnimate=toggleOnOff"
     //% group="Styles"
     export function animate(doAnimate: boolean) {
-        return new Style(StyleName.animate, doAnimate ? 1 : 0)
+        return new Style(StyleName.Animate, doAnimate ? 1 : 0)
     }
 
     /**
@@ -188,7 +188,7 @@ namespace dom {
     //% blockId=uistyleclass block="class $name"
     //% group="Styles"
     export function className(name: string): Style {
-        const res = new Style(StyleName.className);
+        const res = new Style(StyleName.ClassName);
         res.stringValue = name;
         return res;
     }

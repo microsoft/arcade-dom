@@ -17,7 +17,7 @@ namespace dom {
         }
 
         applyStyle(style: Style) {
-            if (style.name === StyleName.color) {
+            if (style.name === StyleName.Color) {
                 this.color = style.value
             }
             else {
@@ -49,7 +49,7 @@ namespace dom {
         }
 
         applyStyle(style: Style) {
-            if (style.name === StyleName.font) {
+            if (style.name === StyleName.Font) {
                 this.font = style.value;
                 this.updateBounds();
             }
@@ -104,7 +104,7 @@ namespace dom {
         }
 
         applyStyle(style: Style) {
-            if (style.name === StyleName.animate) {
+            if (style.name === StyleName.Animate) {
                 this.scrolling = !!style.value
             }
             else {
