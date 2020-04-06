@@ -55,7 +55,7 @@ namespace dom {
         constructor() {
             this.padding = new BoxValues();
             this.border = new BoxValues();
-            this.borderColor = 0;
+            this.borderColor = 1;
             this.align = ContentAlign.Center;
         }
 
@@ -268,18 +268,18 @@ namespace dom {
 
         protected applyStyle(style: Style) {
             switch (style.name) {
-                case StyleName.Width: this.width = style.value; return;
-                case StyleName.Height: this.height = style.value; return;
-                case StyleName.BorderColor: this.contentBox.borderColor = style.value; return;
-                case StyleName.BorderLeft: this.contentBox.border.left = style.value; return;
-                case StyleName.BorderRight: this.contentBox.border.right = style.value; return;
-                case StyleName.BorderTop: this.contentBox.border.top = style.value; return;
-                case StyleName.BorderBottom: this.contentBox.border.bottom = style.value; return;
+                case StyleName.Width: this.width = style.value; break;
+                case StyleName.Height: this.height = style.value; break;
+                case StyleName.BorderColor: this.contentBox.borderColor = style.value; break;
+                case StyleName.BorderLeft: this.contentBox.border.left = style.value; break;
+                case StyleName.BorderRight: this.contentBox.border.right = style.value; break;
+                case StyleName.BorderTop: this.contentBox.border.top = style.value; break;
+                case StyleName.BorderBottom: this.contentBox.border.bottom = style.value; break;
                 case StyleName.ContentAlign: this.contentBox.align = style.value; break;
-                case StyleName.PaddingLeft: this.contentBox.padding.left = style.value; return;
-                case StyleName.PaddingRight: this.contentBox.padding.right = style.value; return;
-                case StyleName.PaddingTop: this.contentBox.padding.top = style.value; return;
-                case StyleName.PaddingBottom: this.contentBox.padding.bottom = style.value; return;
+                case StyleName.PaddingLeft: this.contentBox.padding.left = style.value; break;
+                case StyleName.PaddingRight: this.contentBox.padding.right = style.value; break;
+                case StyleName.PaddingTop: this.contentBox.padding.top = style.value; break;
+                case StyleName.PaddingBottom: this.contentBox.padding.bottom = style.value; break;
                 case StyleName.Padding:
                     this.contentBox.padding.left = style.value;
                     this.contentBox.padding.right = style.value;
@@ -349,7 +349,12 @@ namespace dom {
         else if (element._cachedWidth != undefined) return element._cachedWidth;
         else if (element.width === WRAP) return getWRAPWidth(element);
         else if (element.width === FILL) return element._cachedWidth = contentWidth(element.parent);
-        else return element._cachedWidth = element.width;
+        else {
+            const pa = element.contentBox.padding;
+            const bo = element.contentBox.border;
+            return element._cachedWidth = element.width
+            + pa.left + pa.right + bo.left + bo.right;
+        }
     }
 
     function calculateHeight(element: Element): number {
@@ -357,7 +362,12 @@ namespace dom {
         else if (element._cachedHeight != undefined) return element._cachedHeight;
         else if (element.height === WRAP) return getWRAPHeight(element);
         else if (element.height === FILL) return element._cachedHeight = contentHeight(element.parent);
-        else return element._cachedHeight = element.height;
+        else {
+            const pa = element.contentBox.padding;
+            const bo = element.contentBox.border;
+            return element._cachedHeight = element.height
+            + pa.top + pa.bottom + bo.top + bo.bottom;
+        }
     }
 
     function getWRAPWidth(element: Element) {
@@ -372,23 +382,22 @@ namespace dom {
             if (element.verticalFlow) {
                 let maxWidth = 0;
                 for (const child of element.children) {
-                    maxWidth = Math.max(getWRAPWidth(child), maxWidth)
+                    maxWidth = Math.max(calculateWidth(child), maxWidth)
                 }
                 childWidth = maxWidth;
             }
             else {
                 let totalWidth = 0;
                 for (const child of element.children) {
-                    totalWidth += getWRAPWidth(child);
+                    totalWidth += calculateWidth(child);
                 }
                 childWidth = totalWidth;
             }
         }
 
-        childWidth += element.contentBox.padding.left +
-            element.contentBox.padding.right +
-            element.contentBox.border.left +
-            element.contentBox.border.right;
+        const pa = element.contentBox.padding;
+        const bo = element.contentBox.border;
+        childWidth += pa.left + pa.right + bo.left + bo.right;
 
         if (element.width === WRAP) {
             element._cachedWidth = childWidth;
@@ -409,23 +418,22 @@ namespace dom {
             if (element.verticalFlow) {
                 let totalHeight = 0;
                 for (const child of element.children) {
-                    totalHeight += getWRAPHeight(child);
+                    totalHeight += calculateHeight(child);
                 }
                 childHeight = totalHeight;
             }
             else {
                 let maxHeight = 0;
                 for (const child of element.children) {
-                    maxHeight = Math.max(getWRAPHeight(child), maxHeight)
+                    maxHeight = Math.max(calculateHeight(child), maxHeight)
                 }
                 childHeight = maxHeight;
             }
         }
 
-        childHeight += element.contentBox.padding.top +
-            element.contentBox.padding.bottom +
-            element.contentBox.border.top +
-            element.contentBox.border.bottom;
+        const pa = element.contentBox.padding;
+        const bo = element.contentBox.border;
+        childHeight += pa.top + pa.bottom + bo.top + bo.bottom;
 
         if (element.height === WRAP) {
             element._cachedHeight = childHeight;

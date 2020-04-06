@@ -174,7 +174,7 @@ namespace dom {
         }
     }
 
-    export class ImageElement extends Element {
+    export class ImageElement extends BoxElement {
         protected src: Image;
 
         constructor(src: Image) {
@@ -189,7 +189,7 @@ namespace dom {
             this.width = this.src.width;
         }
 
-        protected drawSelf(bounds: BoundingBox) {
+        protected drawShape(bounds: BoundingBox) {
             screen.drawTransparentImage(this.src, bounds.left, bounds.top);
         }
     }

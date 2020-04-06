@@ -75,7 +75,7 @@ function testV() {
                         . b 5 5 b c d d 5 5 5 5 5 d b .
                         b b c c c d d d d 5 5 5 b b . .
                         . . . c c c c c c c c b b . . .
-                    `),
+                    `, borderColor(5)),
                     box(statsView(), border(2)),
                     box(detailView(), [border(4), borderColor(3)])
                 ])
@@ -83,8 +83,6 @@ function testV() {
         el.defineStyleClass("small", smallFont())
         return el; 
     }
-
-
     game.onShade(function () {
         const el = elg();
         el.draw();
@@ -111,7 +109,7 @@ function statsView() {
                     . b 5 5 b c d d 5 5 5 5 5 d b .
                     b b c c c d d d d 5 5 5 b b . .
                     . . . c c c c c c c c b b . . .
-                `),
+                `, paddingBottom(4)),
             box(text("ATTACK"), "name"),
         box(text(Math.randomRange(10, 20).toString(), "small"), "stat"),
             box(text("DEFENSE"), "name"),
@@ -184,6 +182,30 @@ function hpView() {
     ]);
 }
 
-testList();
+function testBoxModel() {
+    const elg = () => {
+        const el = verticalFlow([
+            text("text", color(1)),
+            text("text", [color(1), border(2), padding(3)]),
+            text("text", [color(2), borderLeft(2), borderTop(3), borderRight(4), borderBottom(5)]),
+            text("text - padding 60", [color(1), paddingLeft(60)]),
+            text("color red", color(2)),
+            horizontalFlow([
+                text("t1", [color(4)]),
+                text("t2", [color(2), paddingLeft(8)]),
+                text("t3", [color(3), paddingTop(8)])
+            ], color(1))
+        ], alignLeft());
+        return el; 
+    }
+    game.onShade(function () {
+        const el = elg();
+        el.draw();
+    });
+}
+
+//testList();
+// testV();
+testBoxModel();
 
 }
