@@ -22,9 +22,9 @@ function listComponent(items: string[], selected: number) {
                     b b c c c d d d d 5 5 5 b b . .
                     . . . c c c c c c c c b b . . .
                 `),
-                text(name)
+                text(name, paddingLeft(8))
             ]),
-            ["label-box", index === selected ? "label-selected" : "label-notselected"]
+            ["label-box", index === selected ? "label-selected" : null]
         ))
     );
 
