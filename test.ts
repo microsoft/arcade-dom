@@ -183,6 +183,24 @@ function hpView() {
 }
 
 function testBoxModel() {
+    const im = img`
+        . . . . . . . . . . b 5 b . . .
+        . . . . . . . . . b 5 b . . . .
+        . . . . . . . . . b c . . . . .
+        . . . . . . b b b b b b . . . .
+        . . . . . b b 5 5 5 5 5 b . . .
+        . . . . b b 5 d 1 f 5 5 d f . .
+        . . . . b 5 5 1 f f 5 d 4 c . .
+        . . . . b 5 5 d f b d d 4 4 . .
+        b d d d b b d 5 5 5 4 4 4 4 4 b
+        b b d 5 5 5 b 5 5 4 4 4 4 4 b .
+        b d c 5 5 5 5 d 5 5 5 5 5 b . .
+        c d d c d 5 5 b 5 5 5 5 5 5 b .
+        c b d d c c b 5 5 5 5 5 5 5 b .
+        . c d d d d d d 5 5 5 5 5 d b .
+        . . c b d d d d d 5 5 5 b b . .
+        . . . c c c c c c c c b b . . .
+    `;
     const elg = () => {
         const el = verticalFlow([
             text("text"),
@@ -196,7 +214,15 @@ function testBoxModel() {
                 text("pr", [color(2), border(1), paddingRight(8)]),
                 text("pt", [color(3), border(1), paddingTop(8)]),
                 text("pb", [color(3), border(1), paddingBottom(8)])
+            ], color(1)),
+            horizontalFlow([
+                imageElement(im, [color(4), border(1)]),
+                imageElement(im, [color(2), border(1), paddingLeft(8)]),
+                imageElement(im, [color(2), border(1), paddingRight(8)]),
+                imageElement(im, [color(3), border(1), paddingTop(8)]),
+                imageElement(im, [color(3), border(1), paddingBottom(8)])
             ], color(1))
+
         ], alignLeft());
         return el; 
     }

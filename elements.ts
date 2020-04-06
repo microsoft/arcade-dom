@@ -59,7 +59,9 @@ namespace dom {
         }
 
         protected drawShape(bounds: BoundingBox) {
-            screen.print(this.text, bounds.left, bounds.top, this.contentBox.color, this.renderFont());
+            const pa = this.contentBox.padding;
+            screen.print(this.text, pa.left + bounds.left, pa.top + bounds.top, 
+                this.contentBox.color, this.renderFont());
         }
 
         protected renderFont() {
@@ -179,7 +181,8 @@ namespace dom {
         }
 
         protected drawShape(bounds: BoundingBox) {
-            screen.drawTransparentImage(this.src, bounds.left, bounds.top);
+            const pa = this.contentBox.padding;
+            screen.drawTransparentImage(this.src, pa.left + bounds.left, pa.top + bounds.top);
         }
     }
 
