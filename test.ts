@@ -24,7 +24,7 @@ function listComponent(items: string[], selected: number) {
                 `),
                 text(name)
             ]),
-            ["label-box", index === selected ? "label-selected" : null]
+            ["label-box", index === selected ? "label-selected" : "label-notselected"]
         ))
     );
 

@@ -10,9 +10,7 @@ namespace dom {
         if (child) {
             box.appendChild(child);
         }
-        if (styles) {
-            box.applyStyles(styles);
-        }
+        box.applyStyles(styles);
         return box;
     }
 
@@ -23,9 +21,7 @@ namespace dom {
     //% group="Elements"
     export function text(content: string, styles?: StylesOrClassName) {
         const text = new TextElement(content);
-        if (styles) {
-            text.applyStyles(styles);
-        }
+        text.applyStyles(styles);
         return text;
     }
 
@@ -36,9 +32,7 @@ namespace dom {
     //% group="Elements"
     export function longText(content: string, styles?: StylesOrClassName) {
         const text = new LongTextElement(content);
-        if (styles) {
-            text.applyStyles(styles);
-        }
+        text.applyStyles(styles);
         return text;
     }
 
@@ -49,13 +43,12 @@ namespace dom {
     //% group="Elements"
     export function verticalFlow(children: Element[], styles?: StylesOrClassName) {
         const container = new Element();
-        if (styles) {
-            container.applyStyles(styles);
-        }
+        container.applyStyles(styles);
 
         if (children)
             for (const child of children) {
-                container.appendChild(child)
+                if (child)
+                    container.appendChild(child)
             }
 
         return container;
@@ -82,9 +75,7 @@ namespace dom {
     //% group="Elements"
     export function scrollingLabel(label: string, maxWidth: number, styles?: StylesOrClassName) {
         const el = new ScrollingTextElement(label, maxWidth);
-        if (styles) {
-            el.applyStyles(styles);
-        }
+        el.applyStyles(styles);
         return el;
     }
 
@@ -96,9 +87,7 @@ namespace dom {
     //% weight=100
     export function imageElement(i: Image, styles?: StylesOrClassName): ImageElement {
         const box = new ImageElement(i);
-        if (styles) {
-            box.applyStyles(styles);
-        }
+        box.applyStyles(styles);
         return box;
     }    
 }

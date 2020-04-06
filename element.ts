@@ -185,14 +185,16 @@ namespace dom {
         }
 
         applyStyles(stylesOrClassName: StylesOrClassName) {
-            if (typeof stylesOrClassName === "string") {
+            if (typeof stylesOrClassName === "string")
                 stylesOrClassName = [dom.className(stylesOrClassName as string)];
-            } else if (stylesOrClassName instanceof Style) {
+            else if (stylesOrClassName instanceof Style)
                 stylesOrClassName = [stylesOrClassName as Style];
-            }
             const styles = stylesOrClassName as StyleOrClassName[];
-            for (const style of styles) {
-                if (style) this.applyStyle(style);
+            if (styles) {
+                for (const style of styles) {
+                    if (style) 
+                        this.applyStyle(style);
+                }
             }
         }
 
