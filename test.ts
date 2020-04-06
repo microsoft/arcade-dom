@@ -191,9 +191,11 @@ function testBoxModel() {
             text("text - padding 60", [color(1), paddingLeft(60)]),
             text("color red", color(2)),
             horizontalFlow([
-                text("t1", [color(4)]),
-                text("t2", [color(2), paddingLeft(8)]),
-                text("t3", [color(3), paddingTop(8)])
+                text("p0", [color(4), border(1)]),
+                text("pl", [color(2), border(1), paddingLeft(8)]),
+                text("pr", [color(2), border(1), paddingRight(8)]),
+                text("pt", [color(3), border(1), paddingTop(8)]),
+                text("pb", [color(3), border(1), paddingBottom(8)])
             ], color(1))
         ], alignLeft());
         return el; 

@@ -26,9 +26,10 @@ namespace dom {
 
         constructor(text?: string) {
             super();
-            this.setText(text);
             this.contentBox.color = 1;
+            this.contentBox.align = ContentAlign.Left;
             this.font = Font.Normal;
+            this.setText(text);
         }
 
         setText(text: string) {
