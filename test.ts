@@ -80,6 +80,7 @@ function testV() {
                     box(detailView(), [border(4), borderColor(3)])
                 ])
             ]);
+        el.defineStyleClass("text", color(15));
         el.defineStyleClass("small", smallFont())
         return el; 
     }
@@ -92,7 +93,7 @@ function testV() {
 function statsView() {
     const el = box(
         verticalFlow([
-                            imageElement(img`
+        imageElement(img`
                     . . . . . . . . . . b 5 b . . .
                     . . . . . . . . . b 5 b . . . .
                     . . . . . . b b b b b b . . . .
@@ -223,6 +224,7 @@ function testBoxModel() {
                 imageElement(im, [color(3), border(1), paddingBottom(8)])
             ], color(1))
         ], alignLeft());
+        el.defineStyleClass("text", color(5))
         return el; 
     }
     game.onShade(function () {
@@ -233,7 +235,7 @@ function testBoxModel() {
 
 dom.debug = true;
 //testList();
-testV();
-//testBoxModel();
+//testV();
+testBoxModel();
 
 }

@@ -115,12 +115,14 @@ namespace dom {
         protected sheet: StyleSheet;
         protected classes: string[];
 
-        constructor() {
+        constructor(cls?: string) {
             this.id = debug ? (Element.nextId++).toString() : undefined;
             this.verticalFlow = true;
             this.width = WRAP;
             this.height = WRAP;
             this.contentBox = new ContentBox();
+            if (cls)
+                this.classes = [cls];
         }
 
         toString() {
@@ -168,7 +170,7 @@ namespace dom {
 
         render(bounds?: BoundingBox) {
             if (this._renderedBounds) return;
-            this.applyClassStyles();
+            this.applyStyles();
 
             if (bounds) {
                 this._renderedBounds = this.contentBox.getElementBounds(bounds.left, bounds.top, bounds.width, bounds.height)
@@ -193,7 +195,7 @@ namespace dom {
             if (this.children) this.children.forEach(c => c.markDirty());
         }
 
-        applyStyles(stylesOrClassName: StylesOrClassName) {
+        addStyles(stylesOrClassName: StylesOrClassName) {
             if (typeof stylesOrClassName === "string")
                 stylesOrClassName = [dom.className(stylesOrClassName as string)];
             else if (stylesOrClassName instanceof Style)
@@ -201,22 +203,25 @@ namespace dom {
             const styles = stylesOrClassName as StyleOrClassName[];
             if (styles) {
                 for (const styleOrClassName of styles) {
-                    if (styleOrClassName) this.applyStyleOrClassName(styleOrClassName)
+                    if (styleOrClassName) this.addStyleOrClassName(styleOrClassName)
                 }
             }
         }
 
-        private applyStyleOrClassName(styleOrClassName: StyleOrClassName) {
+        private addStyleOrClassName(styleOrClassName: StyleOrClassName) {
             if (typeof styleOrClassName === "string")
                 styleOrClassName = dom.className(styleOrClassName as string);
-            if (styleOrClassName)
-                this.applyStyle(styleOrClassName as Style);
+            if (styleOrClassName) {
+                if (!this.sheet) this.sheet = new StyleSheet();
+                this.sheet.addStyle(styleOrClassName as Style);
+            }
         }
 
-        protected applyClassStyles() {
+        protected applyStyles() {
             if (this._renderedBounds) return;
             if (this.classes) this.classes.forEach(c => this.applyStylesForClass(c));
-            if (this.children) this.children.forEach(c => c.applyClassStyles());
+            if (this.sheet && this.sheet.styles) this.sheet.styles.forEach(style => this.applyStyle(style));
+            if (this.children) this.children.forEach(c => c.applyStyles());
         }
 
         protected onDidReceiveBounds(bounds: BoundingBox) {
@@ -224,23 +229,23 @@ namespace dom {
         }
 
         protected applyStylesForClass(className: string) {
-            let classStyles: Style[];
+            // traverse stylesheet upstream
             let current: Element = this;
-
+            let sheets: StyleSheet[] = []
             while (current) {
-                if (current.sheet) {
-                    classStyles = current.sheet.getStylesForClass(className);
-                    if (classStyles) {
-                        break;
-                    }
-                }
-
+                if (current.sheet)
+                    sheets.push(current.sheet);
                 current = current.parent;
             }
 
-            if (classStyles && classStyles.length) {
-                for (const style of classStyles) {
-                    if (style) this.applyStyle(style);
+            // process sheets backward
+            while(sheets.length) {
+                const sheet = sheets.pop();
+                const classStyles = sheet.getStylesForClass(className);
+                if (classStyles && classStyles.length) {
+                    for (const style of classStyles) {
+                        if (style) this.applyStyle(style);
+                    }
                 }
             }
         }

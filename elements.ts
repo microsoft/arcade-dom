@@ -1,8 +1,8 @@
 namespace dom {
     export class ShapeElement extends Element {
 
-        constructor() {
-            super();
+        constructor(cls?: string) {
+            super(cls);
         }
 
         protected drawSelf(bounds: BoundingBox) {
@@ -15,6 +15,10 @@ namespace dom {
     }
 
     export class BoxElement extends ShapeElement {
+        constructor() {
+            super("box");
+        }
+
         protected drawShape(bounds: BoundingBox) {
             screen.fillRect(bounds.left, bounds.top, bounds.width, bounds.height, this.contentBox.color);
         }
@@ -25,7 +29,7 @@ namespace dom {
         font: Font;
 
         constructor(text?: string) {
-            super();
+            super("text");
             this.contentBox.color = 1;
             this.contentBox.align = ContentAlign.Left;
             this.font = Font.Normal;
@@ -165,11 +169,11 @@ namespace dom {
         }
     }
 
-    export class ImageElement extends BoxElement {
+    export class ImageElement extends Element {
         protected src: Image;
 
         constructor(src: Image) {
-            super();
+            super("img");
 
             this.src = src;
             this.updateBounds();

@@ -10,7 +10,7 @@ namespace dom {
         if (child) {
             box.appendChild(child);
         }
-        box.applyStyles(styles);
+        box.addStyles(styles);
         return box;
     }
 
@@ -21,7 +21,7 @@ namespace dom {
     //% group="Elements"
     export function text(content: string, styles?: StylesOrClassName) {
         const text = new TextElement(content);
-        text.applyStyles(styles);
+        text.addStyles(styles);
         return text;
     }
 
@@ -32,7 +32,7 @@ namespace dom {
     //% group="Elements"
     export function longText(content: string, styles?: StylesOrClassName) {
         const text = new LongTextElement(content);
-        text.applyStyles(styles);
+        text.addStyles(styles);
         return text;
     }
 
@@ -43,7 +43,7 @@ namespace dom {
     //% group="Elements"
     export function verticalFlow(children: Element[], styles?: StylesOrClassName) {
         const container = new Element();
-        container.applyStyles(styles);
+        container.addStyles(styles);
 
         if (children)
             for (const child of children) {
@@ -75,7 +75,7 @@ namespace dom {
     //% group="Elements"
     export function scrollingLabel(label: string, maxWidth: number, styles?: StylesOrClassName) {
         const el = new ScrollingTextElement(label, maxWidth);
-        el.applyStyles(styles);
+        el.addStyles(styles);
         return el;
     }
 
@@ -87,7 +87,7 @@ namespace dom {
     //% weight=100
     export function imageElement(i: Image, styles?: StylesOrClassName): ImageElement {
         const box = new ImageElement(i);
-        box.applyStyles(styles);
+        box.addStyles(styles);
         return box;
     }    
 }

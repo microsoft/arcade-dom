@@ -87,17 +87,25 @@ namespace dom {
     }
 
     export class StyleSheet {
+        styles: Style[];
         protected rules: StyleRule[];
 
         constructor() {
-            this.rules = [];
         }
 
         createClass(name: string, styles: Style[]) {
             this.addRule(new StyleRule(name, styles));
         }
 
+        addStyle(style: Style) {
+            if (!this.styles)
+                this.styles = [];
+            this.styles.push(style);
+        }
+
         addRule(r: StyleRule) {
+            if (!this.rules)
+                this.rules = [];
             for (const rule of this.rules) {
                 if (rule.className === r.className) {
                     for (const s of r.getStyles()) {
@@ -110,11 +118,12 @@ namespace dom {
         }
 
         getStylesForClass(className: string): Style[] {
-            for (const rule of this.rules) {
-                if (rule.className === className) {
-                    return rule.getStyles();
+            if (this.rules)
+                for (const rule of this.rules) {
+                    if (rule.className === className) {
+                        return rule.getStyles();
+                    }
                 }
-            }
             return [];
         }
     }
